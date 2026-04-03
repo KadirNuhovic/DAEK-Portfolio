@@ -6,32 +6,114 @@ import { ExternalIcon, GithubIcon } from "./icons";
 
 const projects = [
   {
-    title: "SaaS Dashboard UI",
-    description: "A responsive admin dashboard with charts, tables, and real-time updates.",
-    technologies: ["Next.js", "TypeScript", "Tailwind"],
+    title: "Digital Menu QR Code System",
+    description: "Kompletan sistem za digitalna menija sa QR kodovima za restorane. Omogućava jednostavno upravljanje jelovnikom i narudžbama.",
+    technologies: ["React", "Node.js", "MongoDB", "Express"],
+    image: "/project-1.svg",
+    demo: "#",
+    github: "https://github.com/Emir1231111/dmenuqrkod.git",
+  },
+  {
+    title: "Personal Portfolio Website",
+    description: "Moderan portfolio sajt izgrađen sa Next.js 16, TypeScript i Framer Motion. PWA-ready sa SEO optimizacijom i višejezičnom podrškom.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    image: "/project-2.svg",
+    demo: "https://emir-portfolio-iota.vercel.app/",
+    github: "#",
+  },
+  {
+    title: "Weather Dashboard",
+    description: "Interaktivna vremenska aplikacija sa geolokacijom, 7-dnevnom prognozom i beautiful animacijama vremenskih uslova.",
+    technologies: ["React", "OpenWeather API", "Chart.js"],
     image: "/project-1.svg",
     demo: "#",
     github: "#",
   },
   {
-    title: "Marketing Landing Page",
-    description: "High-converting landing page with animated sections and smooth scroll interactions.",
-    technologies: ["React", "Framer Motion", "Tailwind"],
+    title: "Social Media Analytics",
+    description: "Dashboard za analizu društvenih mreža sa real-time metrikama, grafikama performansi i automated reporting-om.",
+    technologies: ["Vue.js", "D3.js", "Firebase"],
     image: "/project-2.svg",
     demo: "#",
     github: "#",
   },
   {
-    title: "E-commerce Platform",
-    description: "Fast checkout flows, product filtering, and scalable backend architecture.",
-    technologies: ["Next.js", "Node.js", "MongoDB"],
+    title: "Learning Management System",
+    description: "Kompletna platforma za online učenje sa kursovima, kvizovima, progress tracking-om i video streaming-om.",
+    technologies: ["Next.js", "Prisma", "PostgreSQL", "AWS S3"],
     image: "/project-3.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "Real Estate Platform",
+    description: "Platforma za nekretnine sa naprednim pretragama, virtualnim turama, mapama i automated email notifikacijama.",
+    technologies: ["React", "Node.js", "MongoDB", "Google Maps API"],
+    image: "/project-1.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "Fitness Tracking App",
+    description: "Mobilna aplikacija za praćenje fitness aktivnosti sa workout planovima, nutrition tracking-om i social features-ima.",
+    technologies: ["React Native", "Firebase", "HealthKit", "Google Fit"],
+    image: "/project-2.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "E-commerce Dashboard",
+    description: "Admin dashboard za e-commerce platformu sa analytics, inventory management-om, order tracking-om i automated reporting-om.",
+    technologies: ["Vue.js", "Express.js", "PostgreSQL", "Chart.js"],
+    image: "/project-3.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "AI Chat Assistant",
+    description: "AI-powered chat assistant sa natural language processing-om, context awareness-om i multi-platform integration.",
+    technologies: ["Python", "TensorFlow", "FastAPI", "WebSocket"],
+    image: "/project-4.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "Blockchain Voting System",
+    description: "Decentralized voting platform koristeći blockchain technology za transparentne i sigurne izbore.",
+    technologies: ["Solidity", "Web3.js", "React", "Ethereum"],
+    image: "/project-5.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "IoT Smart Home Hub",
+    description: "Centralni hub za smart home uređaje sa voice control-om, automation rules-ima i energy monitoring-om.",
+    technologies: ["Node.js", "MQTT", "Raspberry Pi", "InfluxDB"],
+    image: "/project-6.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "Data Visualization Platform",
+    description: "Platforma za kreiranje interaktivnih dashboard-a sa real-time data visualization-om i custom report generation-om.",
+    technologies: ["D3.js", "React", "Python", "WebSocket"],
+    image: "/project-7.svg",
+    demo: "#",
+    github: "#",
+  },
+  {
+    title: "Social Media Analytics Tool",
+    description: "Alat za analizu socijalnih medija sa sentiment analysis-om, engagement tracking-om i automated content scheduling-om.",
+    technologies: ["Angular", "Python", "NLP", "MongoDB"],
+    image: "/project-8.svg",
     demo: "#",
     github: "#",
   },
 ];
 
-export function Projects() {
+import { type Translations } from "./LanguageSwitcher";
+
+export function Projects({ translations }: { translations: Translations }) {
   return (
     <section id="projects" className="relative overflow-hidden py-20">
       <div className="absolute inset-0 opacity-30">
@@ -41,10 +123,10 @@ export function Projects() {
 
       <div className="relative mx-auto max-w-6xl px-4 text-white md:px-8">
         <div className="mb-10 max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Featured Work</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Projects I&apos;ve built</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Istaknuti Radovi</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Projekti koje smo izgradili</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
-            A selection of projects demonstrating modern design systems, responsive UI patterns, and performant code.
+            Odabir projekata koji demonstriraju moderne dizajn sisteme, responzivne UI obrasce i performantni kod.
           </p>
         </div>
 

@@ -2,21 +2,46 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { GithubIcon, LinkedInIcon, MailIcon } from "./icons";
 
-export function Contact() {
+import { type Translations } from "./LanguageSwitcher";
+
+export function Contact({ translations }: { translations: Translations }) {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4500);
-    setForm({ name: "", email: "", message: "" });
+    setLoading(true);
+
+    try {
+      // Replace with your EmailJS service ID, template ID, and public key
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "your_service_id",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "your_template_id",
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "your_public_key"
+      );
+
+      setSubmitted(true);
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 4500);
+    } catch (error) {
+      console.error("Email send failed:", error);
+      alert("Došlo je do greške pri slanju mejla. Pokušajte ponovo.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,10 +53,10 @@ export function Contact() {
 
       <div className="relative mx-auto max-w-6xl px-4 text-white md:px-8">
         <div className="mb-10 max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Get in touch</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Let&apos;s build something great together</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">{translations.contact.badge}</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{translations.contact.title}</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
-            Share your idea or project and I&apos;ll get back within 1-2 business days. Looking forward to hearing from you.
+            {translations.contact.description}
           </p>
         </div>
 
@@ -47,7 +72,7 @@ export function Contact() {
             <div className="grid gap-6">
               <div>
                 <label className="text-sm font-semibold text-white/80" htmlFor="name">
-                  Name
+                  {translations.contact.form.name}
                 </label>
                 <input
                   id="name"
@@ -61,7 +86,7 @@ export function Contact() {
               </div>
               <div>
                 <label className="text-sm font-semibold text-white/80" htmlFor="email">
-                  Email
+                  {translations.contact.form.email}
                 </label>
                 <input
                   id="email"
@@ -76,7 +101,7 @@ export function Contact() {
               </div>
               <div>
                 <label className="text-sm font-semibold text-white/80" htmlFor="message">
-                  Message
+                  {translations.contact.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -92,14 +117,15 @@ export function Contact() {
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-purple-500/30 transition hover:brightness-110"
+                disabled={loading}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-purple-500/30 transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send message
+                {loading ? translations.contact.form.loading : translations.contact.form.button}
               </button>
 
               {submitted ? (
                 <div className="rounded-2xl border border-white/10 bg-white/10 p-4 text-sm text-white/80">
-                  Thanks for reaching out! I&apos;ll respond as soon as possible.
+                  {translations.contact.form.success}
                 </div>
               ) : null}
             </div>
@@ -114,8 +140,8 @@ export function Contact() {
           >
             <div className="flex flex-col gap-6">
               <div>
-                <h3 className="text-xl font-semibold text-white">Connect with me</h3>
-                <p className="mt-3 text-white/70">Feel free to reach out via email or follow along on my socials for the latest updates.</p>
+                <h3 className="text-xl font-semibold text-white">Poveži se sa mnom</h3>
+                <p className="mt-3 text-white/70">Slobodno mi se javi putem emaila ili prati moje društvene mreže za najnovija ažuriranja.</p>
               </div>
 
               <div className="space-y-4">

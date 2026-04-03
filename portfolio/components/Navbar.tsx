@@ -3,19 +3,23 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { LanguageSwitcher, translations, type Language } from "./LanguageSwitcher";
 
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
-  { label: "Tech Stack", href: "#tech" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
-
-export function Navbar() {
+export function Navbar({ currentLang, onLanguageChange }: { 
+  currentLang: Language;
+  onLanguageChange: (lang: Language) => void;
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  const t = translations[currentLang].nav;
+  const navItems = [
+    { label: t.projects, href: "#projects" },
+    { label: t.services, href: "#services" },
+    { label: t.about, href: "#about" },
+    { label: t.technologies, href: "#tech" },
+    { label: t.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,13 +31,13 @@ export function Navbar() {
           const el = section as HTMLElement;
           return {
             id: el?.id,
-            offset: el ? el.offsetTop : 0,
+            offset: el ? el.offsetTop - 100 : 0,
           };
         })
         .sort((a, b) => b.offset - a.offset)
         .find((item) => scrollY >= item.offset);
 
-      if (active?.id) {
+      if (active?.id && active.id !== activeSection) {
         setActiveSection(active.id);
       }
     };
@@ -41,7 +45,7 @@ export function Navbar() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeSection]);
 
   useEffect(() => {
     const onResize = () => setMobileOpen(false);
@@ -52,12 +56,10 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-8">
-        <Link href="#home" className="group flex items-center gap-2 font-semibold text-white">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-500 text-sm font-bold text-black shadow-lg shadow-purple-500/20">
-            JD
-          </span>
-          <span className="hidden text-lg tracking-wide sm:inline">Jordan Dev</span>
-        </Link>
+        <div className="flex items-center gap-2">
+          <img src="/DAEK.png" alt="DAEK Techvision" className="h-10 w-10 rounded-xl shadow-lg" />
+          <span className="text-lg tracking-wide font-semibold text-white">DAEK Techvision</span>
+        </div>
 
         <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => {
@@ -80,6 +82,8 @@ export function Navbar() {
             );
           })}
         </nav>
+
+        <LanguageSwitcher currentLang={currentLang} onLanguageChange={onLanguageChange} />
 
         <button
           className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-2 text-white/80 transition hover:bg-white/10 md:hidden"

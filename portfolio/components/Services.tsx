@@ -6,27 +6,29 @@ import { CodeIcon, DesignIcon, RocketIcon, SpeedIcon } from "./icons";
 const services = [
   {
     title: "Fullstack Web Development",
-    description: "Building robust, scalable applications with Next.js, TypeScript, and modern backends.",
+    description: "Izgradnja robusnih, skalabilnih aplikacija s Next.js, TypeScript i modernim backendima.",
     icon: CodeIcon,
   },
   {
-    title: "UI/UX Design",
-    description: "Designing polished interfaces with a focus on accessibility and intuitive interactions.",
+    title: "UI/UX Dizajn",
+    description: "Dizajniranje doteranih sučelja s fokusom na pristupačnost i intuitivne interakcije.",
     icon: DesignIcon,
   },
   {
-    title: "Landing Page Development",
-    description: "Conversion-focused landing pages with pixel-perfect layouts and fast load times.",
+    title: "Razvoj Landing Stranica",
+    description: "Landing stranice fokusirane na konverziju s pixel-perfect layoutima i brzim vremenom učitavanja.",
     icon: RocketIcon,
   },
   {
-    title: "Website Optimization",
-    description: "Performance tuning, SEO improvements, and responsive experiences for every device.",
+    title: "Optimizacija Web Stranica",
+    description: "Podešavanje performansi, SEO poboljšanja i responzivna iskustva za svaki uređaj.",
     icon: SpeedIcon,
   },
 ];
 
-export function Services() {
+import { type Translations } from "./LanguageSwitcher";
+
+export function Services({ translations }: { translations: Translations }) {
   return (
     <section id="services" className="relative overflow-hidden py-20">
       <div className="absolute inset-0 opacity-40">
@@ -36,10 +38,10 @@ export function Services() {
 
       <div className="relative mx-auto max-w-6xl px-4 text-white md:px-8">
         <div className="mb-12 max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">What I do</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Services I offer</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Što radimo</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Usluge koje nudimo</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
-            From rapid prototyping to production-ready apps, I deliver full-cycle solutions with the polish you expect.
+            Od brzog prototipiranja do produkcijskih aplikacija, isporučujemo rješenja punog ciklusa s dotjeranošću koju očekujete.
           </p>
         </div>
 

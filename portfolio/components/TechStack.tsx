@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const stack = [
   {
     name: "React",
-    description: "Component-driven UI",
+    description: "UI baziran na komponentama",
     color: "#61dafb",
     svg: (
       <svg viewBox="0 0 128 128" className="h-10 w-10" aria-hidden="true">
@@ -33,7 +33,7 @@ const stack = [
   },
   {
     name: "TypeScript",
-    description: "Typed JavaScript",
+    description: "Tipizirani JavaScript",
     color: "#3178c6",
     svg: (
       <svg viewBox="0 0 128 128" className="h-10 w-10" aria-hidden="true">
@@ -47,7 +47,7 @@ const stack = [
   },
   {
     name: "Tailwind CSS",
-    description: "Utility-first styling",
+    description: "Utility-first stiliziranje",
     color: "#38bdf8",
     svg: (
       <svg viewBox="0 0 128 128" className="h-10 w-10" aria-hidden="true">
@@ -64,7 +64,7 @@ const stack = [
   },
   {
     name: "Node.js",
-    description: "Server-side JavaScript",
+    description: "JavaScript na serveru",
     color: "#83cd29",
     svg: (
       <svg viewBox="0 0 128 128" className="h-10 w-10" aria-hidden="true">
@@ -77,7 +77,7 @@ const stack = [
   },
   {
     name: "MongoDB",
-    description: "Flexible document database",
+    description: "Fleksibilna dokument baza",
     color: "#47a248",
     svg: (
       <svg viewBox="0 0 128 128" className="h-10 w-10" aria-hidden="true">
@@ -94,7 +94,9 @@ const stack = [
   },
 ];
 
-export function TechStack() {
+import { type Translations } from "./LanguageSwitcher";
+
+export function TechStack({ translations }: { translations: Translations }) {
   return (
     <section id="tech" className="relative overflow-hidden py-20">
       <div className="absolute inset-0 opacity-20">
@@ -104,10 +106,10 @@ export function TechStack() {
 
       <div className="relative mx-auto max-w-6xl px-4 text-white md:px-8">
         <div className="mb-10 max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Tech Stack</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Tools & technologies</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Tehnologije</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Alati &amp; tehnologije</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
-            Modern toolchain focused on speed, scalability, and developer experience.
+            Moderni set alata fokusiran na brzinu, skalabilnost i iskustvo programera.
           </p>
         </div>
 
