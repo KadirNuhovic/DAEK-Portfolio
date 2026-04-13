@@ -2,46 +2,46 @@
 
 import { useState } from "react";
 import { Navbar } from "../components/Navbar";
-import { LanguageSwitcher, translations, type Language, type Translations } from "../components/LanguageSwitcher";
-import { About } from "../components/About";
 import { Hero } from "../components/Hero";
-import { Results } from "../components/Results";
-import { Partners } from "../components/Partners";
-import { Testimonials } from "../components/Testimonials";
-import { Process } from "../components/Process";
-import { Services } from "../components/Services";
-import { Projects } from "../components/Projects";
-import { TechStack } from "../components/TechStack";
-import { FAQ } from "../components/FAQ";
-import { CTA } from "../components/CTA";
-import { Blog } from "../components/Blog";
+import { AboutAgency } from "../components/AboutAgency";
+import { WorkProcess } from "../components/WorkProcess";
+import { ServicesAgency } from "../components/ServicesAgency";
+import { FeaturedWorks } from "../components/FeaturedWorks";
+import { TestimonialsAgency } from "../components/TestimonialsAgency";
+import { BlogSection } from "../components/BlogSection";
+import { WhyChooseUs } from "../components/WhyChooseUs";
+import { TechStackAgency } from "../components/TechStackAgency";
+import { ClosingCTA } from "../components/ClosingCTA";
 import { Contact } from "../components/Contact";
+import { LoadingScreen } from "../components/LoadingScreen";
+import { InteractiveFeatures } from "../components/InteractiveFeatures";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { BackToTop } from "../components/BackToTop";
 
 export default function Home() {
-  const [currentLang, setCurrentLang] = useState<Language>('bs');
-
-  const t = translations[currentLang];
+  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'sr'>('en');
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <LoadingScreen />
+      <InteractiveFeatures 
+        currentLanguage={currentLanguage}
+        onLanguageChange={setCurrentLanguage}
+      />
       <ScrollProgress />
-      <Navbar currentLang={currentLang} onLanguageChange={setCurrentLang} />
+      <Navbar />
       <main className="relative overflow-hidden">
-        <Hero translations={t} />
-        <About translations={t} />
-        <Partners translations={t} />
-        <Results translations={t} />
-        <Testimonials translations={t} />
-        <Process translations={t} />
-        <Services translations={t} />
-        <Projects translations={t} />
-        <TechStack translations={t} />
-        <FAQ translations={t} />
-        <CTA translations={t} />
-        <Blog translations={t} />
-        <Contact translations={t} />
+        <Hero />
+        <AboutAgency />
+        <WorkProcess />
+        <ServicesAgency />
+        <FeaturedWorks />
+        <TestimonialsAgency />
+        <BlogSection />
+        <WhyChooseUs />
+        <TechStackAgency />
+        <ClosingCTA />
+        <Contact />
       </main>
 
       <BackToTop />
@@ -56,48 +56,48 @@ export default function Home() {
                 <span className="text-lg font-semibold text-white">DAEK Techvision</span>
               </div>
               <p className="text-sm text-white/60">
-                Moderan portfolio koje prikazuje fullstack web razvoj, UI/UX dizajn i product-focused engineering.
+                UI/UX & Full-Stack Web Development Agency building modern digital experiences that drive conversions.
               </p>
             </div>
 
             {/* Quick Links */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-white">Brzi Linkovi</h3>
+              <h3 className="text-sm font-semibold text-white">Quick Links</h3>
               <div className="space-y-2">
-                <a href="#about" className="block text-sm text-white/60 hover:text-white transition">O meni</a>
-                <a href="#projects" className="block text-sm text-white/60 hover:text-white transition">Projekti</a>
-                <a href="#services" className="block text-sm text-white/60 hover:text-white transition">Usluge</a>
-                <a href="#contact" className="block text-sm text-white/60 hover:text-white transition">Kontakt</a>
+                <a href="#about" className="block text-sm text-white/60 hover:text-white transition">About</a>
+                <a href="#services" className="block text-sm text-white/60 hover:text-white transition">Services</a>
+                <a href="#why-choose-us" className="block text-sm text-white/60 hover:text-white transition">Why Choose Us</a>
+                <a href="#contact" className="block text-sm text-white/60 hover:text-white transition">Contact</a>
               </div>
             </div>
 
             {/* Services */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-white">Usluge</h3>
+              <h3 className="text-sm font-semibold text-white">Services</h3>
               <div className="space-y-2">
                 <p className="text-sm text-white/60">Web Development</p>
                 <p className="text-sm text-white/60">UI/UX Design</p>
-                <p className="text-sm text-white/60">Consulting</p>
-                <p className="text-sm text-white/60">Maintenance</p>
+                <p className="text-sm text-white/60">SaaS Development</p>
+                <p className="text-sm text-white/60">E-commerce Solutions</p>
               </div>
             </div>
 
             {/* Contact */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-white">Kontakt</h3>
+              <h3 className="text-sm font-semibold text-white">Contact</h3>
               <div className="space-y-2">
-                <p className="text-sm text-white/60">📧 daek@techvision.rs</p>
+                <p className="text-sm text-white/60">📧 deak@deaktechvision.com</p>
                 <p className="text-sm text-white/60">📱 +381 69 2419692</p>
                 <p className="text-sm text-white/60">📍 Novi Pazar, SRB</p>
               </div>
               <div className="flex gap-4 pt-4">
-                <a href="https://linkedin.com/in/daektechvision" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition">
-                  💼 LinkedIn
+                <a href="tel:+381692419692" className="text-white/60 hover:text-white transition">
+                  � +381 69 2419692
                 </a>
-                <a href="https://github.com/daektechvision" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition">
+                <a href="https://github.com/daektechvision-maker" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition">
                   🐙 GitHub
                 </a>
-                <a href="mailto:daek@techvision.rs" className="text-white/60 hover:text-white transition">
+                <a href="mailto:deak@deaktechvision.com" className="text-white/60 hover:text-white transition">
                   ✉️ Email
                 </a>
               </div>
@@ -107,10 +107,10 @@ export default function Home() {
           <div className="mt-12 border-t border-white/10 pt-8">
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
               <p className="text-sm text-white/60">
-                © {new Date().getFullYear()} DAEK Techvision. Sva prava zadržana.
+                © {new Date().getFullYear()} DAEK Techvision. All rights reserved.
               </p>
               <p className="text-xs text-white/40">
-                Izgrađeno s ❤️ koristeći Next.js, Tailwind CSS i Framer Motion.
+                Built with ❤️ using Next.js, Tailwind CSS and Framer Motion.
               </p>
             </div>
           </div>

@@ -3,22 +3,21 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LanguageSwitcher, translations, type Language } from "./LanguageSwitcher";
 
-export function Navbar({ currentLang, onLanguageChange }: { 
-  currentLang: Language;
-  onLanguageChange: (lang: Language) => void;
-}) {
+export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const t = translations[currentLang].nav;
   const navItems = [
-    { label: t.projects, href: "#projects" },
-    { label: t.services, href: "#services" },
-    { label: t.about, href: "#about" },
-    { label: t.technologies, href: "#tech" },
-    { label: t.contact, href: "#contact" },
+    { label: "About", href: "#about" },
+    { label: "Process", href: "#work-process" },
+    { label: "Services", href: "#services" },
+    { label: "Projects", href: "#featured-works" },
+    { label: "Testimonials", href: "#testimonials" },
+    { label: "Blog", href: "#blog" },
+    { label: "Why Choose Us", href: "#why-choose-us" },
+    { label: "Tech Stack", href: "#tech-stack" },
+    { label: "Contact", href: "#contact" },
   ];
 
   useEffect(() => {
@@ -83,8 +82,7 @@ export function Navbar({ currentLang, onLanguageChange }: {
           })}
         </nav>
 
-        <LanguageSwitcher currentLang={currentLang} onLanguageChange={onLanguageChange} />
-
+        
         <button
           className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-2 text-white/80 transition hover:bg-white/10 md:hidden"
           onClick={() => setMobileOpen((open) => !open)}
