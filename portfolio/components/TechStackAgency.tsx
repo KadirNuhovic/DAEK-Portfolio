@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { type Translations } from "./LanguageSwitcher";
 
-export function TechStackAgency() {
+export function TechStackAgency({ translations }: { translations: Translations }) {
   const technologies = [
     "React",
     "Next.js", 
@@ -44,27 +45,24 @@ export function TechStackAgency() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Our{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              Tech Stack
-            </span>
+            {translations.techStack.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-white/70 max-w-2xl mx-auto"
           >
-            Cutting-edge technologies we use to build powerful digital solutions
+            {translations.techStack.description}
           </motion.p>
         </motion.div>
 

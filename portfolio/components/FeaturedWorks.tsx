@@ -2,58 +2,17 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch } from "lucide-react";
+import { type Translations } from "./LanguageSwitcher";
 
-export function FeaturedWorks() {
-  const projects = [
-    {
-      title: "TechStart SaaS Platform",
-      description: "Modern dashboard with real-time analytics, user management, and automated reporting system built with Next.js and Supabase.",
-      image: "/api/placeholder/600/400",
-      tags: ["Next.js", "Supabase", "Tailwind CSS", "TypeScript"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example"
-    },
-    {
-      title: "E-Commerce Plus",
-      description: "Full-featured online store with inventory management, payment processing, and responsive design using React and Node.js.",
-      image: "/api/placeholder/600/400",
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example"
-    },
-    {
-      title: "Booking System Pro",
-      description: "Advanced booking platform with calendar integration, automated notifications, and real-time availability tracking.",
-      image: "/api/placeholder/600/400",
-      tags: ["Next.js", "PostgreSQL", "REST APIs", "Figma"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example"
-    },
-    {
-      title: "AI Content Generator",
-      description: "AI-powered content creation tool with natural language processing and customizable templates for marketing teams.",
-      image: "/api/placeholder/600/400",
-      tags: ["React", "OpenAI API", "TypeScript", "Vercel"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example"
-    },
-    {
-      title: "Portfolio Agency",
-      description: "Conversion-focused agency website with smooth animations, optimized performance, and modern design system.",
-      image: "/api/placeholder/600/400",
-      tags: ["Next.js", "Framer Motion", "Tailwind CSS", "Vercel"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example"
-    },
-    {
-      title: "Mobile Banking App",
-      description: "Secure mobile banking application with biometric authentication, transaction history, and budget tracking features.",
-      image: "/api/placeholder/600/400",
-      tags: ["React Native", "Firebase", "TypeScript", "Security"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example"
-    }
-  ];
+export function FeaturedWorks({ translations }: { translations: Translations }) {
+  const projects = translations.projects.items.map((item, index) => ({
+    title: item.title,
+    description: item.description,
+    image: "/api/placeholder/600/400",
+    tags: item.tech,
+    liveUrl: "https://example.com",
+    githubUrl: "https://github.com/example"
+  }));
 
   return (
     <section id="featured-works" className="relative py-20 overflow-hidden">
@@ -83,27 +42,24 @@ export function FeaturedWorks() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Istaknuti{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              Radovi
-            </span>
+            {translations.projects.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-white/70 max-w-3xl mx-auto"
           >
-            Projekti koje smo izgradili - Odabir projekata koji demonstriraju moderne dizajn sisteme, responzivne UI obrasce i performantni kod.
+            {translations.projects.description}
           </motion.p>
         </motion.div>
 
@@ -245,7 +201,7 @@ export function FeaturedWorks() {
               href="#contact"
               className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10 hover:border-white/40"
             >
-              View All Projects
+              {translations.hero.viewProjects}
             </a>
           </motion.div>
         </motion.div>

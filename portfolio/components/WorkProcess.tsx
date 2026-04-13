@@ -1,40 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { type Translations } from "./LanguageSwitcher";
 
-export function WorkProcess() {
-  const processSteps = [
-    {
-      number: "01",
-      title: "Discovery & Strategy",
-      description: "We start by understanding your business goals, target audience, and technical requirements to create a solid project foundation."
-    },
-    {
-      number: "02", 
-      title: "Design & Prototyping",
-      description: "Our team creates wireframes and interactive prototypes that visualize the user experience and interface design."
-    },
-    {
-      number: "03",
-      title: "Development & Implementation",
-      description: "We build your solution using modern technologies, following best practices for clean, scalable, and maintainable code."
-    },
-    {
-      number: "04",
-      title: "Testing & Quality Assurance",
-      description: "Rigorous testing ensures your product works flawlessly across all devices and meets the highest quality standards."
-    },
-    {
-      number: "05",
-      title: "Launch & Deployment",
-      description: "We handle the complete deployment process, ensuring a smooth launch and optimal performance from day one."
-    },
-    {
-      number: "06",
-      title: "Support & Optimization",
-      description: "Ongoing support and continuous optimization to ensure your digital product evolves with your business needs."
-    }
-  ];
+export function WorkProcess({ translations }: { translations: Translations }) {
+  const processSteps = translations.process.items.map((item, index) => ({
+    number: String(index + 1).padStart(2, '0'),
+    title: item.title,
+    description: item.description,
+    icon: item.icon
+  }));
 
   return (
     <section id="work-process" className="relative py-20 overflow-hidden">
@@ -63,27 +38,24 @@ export function WorkProcess() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Naš Proces{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              Rada
-            </span>
+            {translations.process.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-white/70 max-w-3xl mx-auto"
           >
-            Strukturirani pristup koji garantuje izvanredne rezultate svaki put.
+            {translations.process.description}
           </motion.p>
         </motion.div>
 

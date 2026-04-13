@@ -17,9 +17,11 @@ import { LoadingScreen } from "../components/LoadingScreen";
 import { InteractiveFeatures } from "../components/InteractiveFeatures";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { BackToTop } from "../components/BackToTop";
+import { translations, type Language } from "../components/LanguageSwitcher";
 
 export default function Home() {
-  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'sr'>('en');
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
+  const currentTranslations = translations[currentLanguage];
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -29,19 +31,19 @@ export default function Home() {
         onLanguageChange={setCurrentLanguage}
       />
       <ScrollProgress />
-      <Navbar />
+      <Navbar translations={currentTranslations} />
       <main className="relative overflow-hidden">
-        <Hero />
-        <AboutAgency />
-        <WorkProcess />
-        <ServicesAgency />
-        <FeaturedWorks />
-        <TestimonialsAgency />
-        <BlogSection />
+        <Hero translations={currentTranslations} />
+        <AboutAgency translations={currentTranslations} />
+        <WorkProcess translations={currentTranslations} />
+        <ServicesAgency translations={currentTranslations} />
+        <FeaturedWorks translations={currentTranslations} />
+        <TestimonialsAgency translations={currentTranslations} />
+        <BlogSection translations={currentTranslations} />
         <WhyChooseUs />
-        <TechStackAgency />
-        <ClosingCTA />
-        <Contact />
+        <TechStackAgency translations={currentTranslations} />
+        <ClosingCTA translations={currentTranslations} />
+        <Contact translations={currentTranslations} />
       </main>
 
       <BackToTop />
@@ -64,16 +66,16 @@ export default function Home() {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-white">Quick Links</h3>
               <div className="space-y-2">
-                <a href="#about" className="block text-sm text-white/60 hover:text-white transition">About</a>
-                <a href="#services" className="block text-sm text-white/60 hover:text-white transition">Services</a>
+                <a href="#about" className="block text-sm text-white/60 hover:text-white transition">{currentTranslations.nav.about}</a>
+                <a href="#services" className="block text-sm text-white/60 hover:text-white transition">{currentTranslations.nav.services}</a>
                 <a href="#why-choose-us" className="block text-sm text-white/60 hover:text-white transition">Why Choose Us</a>
-                <a href="#contact" className="block text-sm text-white/60 hover:text-white transition">Contact</a>
+                <a href="#contact" className="block text-sm text-white/60 hover:text-white transition">{currentTranslations.nav.contact}</a>
               </div>
             </div>
 
             {/* Services */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-white">Services</h3>
+              <h3 className="text-sm font-semibold text-white">{currentTranslations.nav.services}</h3>
               <div className="space-y-2">
                 <p className="text-sm text-white/60">Web Development</p>
                 <p className="text-sm text-white/60">UI/UX Design</p>
@@ -84,7 +86,7 @@ export default function Home() {
 
             {/* Contact */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-white">Contact</h3>
+              <h3 className="text-sm font-semibold text-white">{currentTranslations.nav.contact}</h3>
               <div className="space-y-2">
                 <p className="text-sm text-white/60">📧 deak@deaktechvision.com</p>
                 <p className="text-sm text-white/60">📱 +381 69 2419692</p>

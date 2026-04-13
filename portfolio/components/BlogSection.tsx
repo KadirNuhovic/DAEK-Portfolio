@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, ArrowRight, Search, Filter } from "lucide-react";
+import { type Translations } from "./LanguageSwitcher";
 
 interface BlogPost {
   id: number;
@@ -101,7 +102,7 @@ const blogPosts: BlogPost[] = [
 
 const categories = ["All", "Development", "Design", "Performance", "E-commerce", "Mobile", "Backend"];
 
-export function BlogSection() {
+export function BlogSection({ translations }: { translations: Translations }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);

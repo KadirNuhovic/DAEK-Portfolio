@@ -1,55 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { type Translations } from "./LanguageSwitcher";
 
-export function ServicesAgency() {
-  const services = [
-    {
-      icon: "🔄",
-      title: "Modern Website Redesign",
-      description: "Transform outdated websites into modern, conversion-focused digital experiences"
-    },
-    {
-      icon: "📊",
-      title: "SaaS Dashboard Development",
-      description: "Build intuitive, data-rich dashboards for SaaS applications"
-    },
-    {
-      icon: "⚙️",
-      title: "Custom Web Applications",
-      description: "Tailored web applications built to solve specific business challenges"
-    },
-    {
-      icon: "🛒",
-      title: "E-commerce Solutions",
-      description: "Complete online stores with seamless shopping experiences"
-    },
-    {
-      icon: "📅",
-      title: "Booking Systems",
-      description: "Efficient booking and scheduling systems for service businesses"
-    },
-    {
-      icon: "🤖",
-      title: "AI-powered Interfaces",
-      description: "Smart interfaces that leverage AI for enhanced user experiences"
-    },
-    {
-      icon: "🎯",
-      title: "Landing Pages that Convert",
-      description: "High-converting landing pages optimized for marketing campaigns"
-    },
-    {
-      icon: "⚡",
-      title: "Performance Optimization",
-      description: "Speed and performance optimization for existing websites"
-    },
-    {
-      icon: "📱",
-      title: "Mobile-first Responsive Design",
-      description: "Responsive designs that work perfectly on all devices"
-    }
-  ];
+export function ServicesAgency({ translations }: { translations: Translations }) {
+  const services = translations.services.items.map((item, index) => ({
+    icon: index === 0 ? "🔄" : index === 1 ? "📊" : index === 2 ? "⚙️" : index === 3 ? "🛒" : "🎯",
+    title: item.title,
+    description: item.description
+  }));
 
   return (
     <section id="services" className="relative py-20 overflow-hidden">
@@ -78,27 +37,24 @@ export function ServicesAgency() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            What We{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              Do
-            </span>
+            {translations.services.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-white/70 max-w-2xl mx-auto"
           >
-            Comprehensive web development and design services to help your business thrive in the digital world
+            {translations.services.description}
           </motion.p>
         </motion.div>
 

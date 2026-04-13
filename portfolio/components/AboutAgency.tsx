@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { type Translations } from "./LanguageSwitcher";
 
-export function AboutAgency() {
+export function AboutAgency({ translations }: { translations: Translations }) {
   return (
     <section id="about" className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-gray-950 to-slate-950" />
@@ -31,30 +32,27 @@ export function AboutAgency() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-8"
           >
-            About{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              DAEK Techvision
-            </span>
+            {translations.about.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl leading-relaxed text-white/70 max-w-3xl mx-auto"
           >
-            DAEK Techvision helps startups and small-to-mid businesses design and develop fast, scalable, and visually clean digital products using Next.js, React, Node.js, Tailwind CSS, Supabase, and Figma.
+            {translations.about.description}
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -64,17 +62,17 @@ export function AboutAgency() {
             {[
               {
                 title: "Design",
-                description: "User-centered design that converts visitors into customers",
+                description: translations.about.specList[0],
                 icon: "🎨"
               },
               {
-                title: "Development", 
-                description: "Clean, scalable code built with modern technologies",
+                title: "Development",
+                description: translations.about.specList[1],
                 icon: "💻"
               },
               {
                 title: "Growth",
-                description: "Digital products that drive business growth and success",
+                description: translations.about.specList[2],
                 icon: "📈"
               }
             ].map((item, index) => (

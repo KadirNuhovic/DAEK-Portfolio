@@ -3,21 +3,22 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { type Translations } from "./LanguageSwitcher";
 
-export function Navbar() {
+export function Navbar({ translations }: { translations: Translations }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
-    { label: "About", href: "#about" },
+    { label: translations.nav.about, href: "#about" },
     { label: "Process", href: "#work-process" },
-    { label: "Services", href: "#services" },
-    { label: "Projects", href: "#featured-works" },
+    { label: translations.nav.services, href: "#services" },
+    { label: translations.nav.projects, href: "#featured-works" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "Blog", href: "#blog" },
     { label: "Why Choose Us", href: "#why-choose-us" },
-    { label: "Tech Stack", href: "#tech-stack" },
-    { label: "Contact", href: "#contact" },
+    { label: translations.nav.technologies, href: "#tech-stack" },
+    { label: translations.nav.contact, href: "#contact" },
   ];
 
   useEffect(() => {

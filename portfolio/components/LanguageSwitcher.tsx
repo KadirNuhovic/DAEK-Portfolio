@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-type Language = 'bs' | 'en';
+type Language = 'sr' | 'en';
 
 interface Translations {
   nav: {
@@ -102,7 +102,7 @@ interface Translations {
 }
 
 const translations: Record<Language, Translations> = {
-  bs: {
+  sr: {
     nav: {
       about: "O meni",
       projects: "Projekti",
@@ -114,7 +114,7 @@ const translations: Record<Language, Translations> = {
       badge: "Fullstack developeri • UI/UX entuzijasti",
       title: "Fullstack Web Developeri",
       titleAccent: "& Dizajneri",
-      subtitle: "Gradimo visokoperformantne web stranice i aplikacije s prekrasnim sučeljima, besprijekornim korisničkim iskustvima i skalabilnim kodom. Hajde da oživimo vaš sljedeći projekt.",
+      subtitle: "Gradimo visokoperformantne web stranice i aplikacije s prekrasnim sučeljima, besprijekornim korisničkim iskustvima i skalabilnim kodom. Hajde da oživimo vaš sledeći projekat.",
       viewProjects: "Pogledaj Projekte",
       contactUs: "Kontaktirajte Nas",
       downloadResume: "Preuzmi CV",
@@ -138,13 +138,13 @@ const translations: Record<Language, Translations> = {
         "Kolaborativni razvoj",
       ],
       approachTitle: "Naš pristup",
-      approachDesc1: "Kombiniramo moderne alate s product mindsetom. Svaki projekt započinje s korisničkim potrebama.",
-      approachDesc2: "Bilo da je riječ o startupu ili osvježavanju platforme, gradimo rješenja koja oduševljavaju.",
+      approachDesc1: "Kombiniramo moderne alate s product mindsetom. Svaki projekat započinje s korisničkim potrebama.",
+      approachDesc2: "Bilo da je reč o startupu ili osvežavanju platforme, gradimo rešenja koja oduševljavaju.",
     },
     services: {
       badge: "Što radimo",
       title: "Usluge koje nudimo",
-      description: "Od brzog prototipiranja do produkcijskih aplikacija, isporučujemo rješenja punog ciklusa.",
+      description: "Od brzog prototipiranja do produkcijskih aplikacija, isporučujemo rešenja punog ciklusa.",
       items: [
         { title: "Fullstack Razvoj", description: "Izgradnja robusnih aplikacija s Next.js i TypeScript." },
         { title: "UI/UX Dizajn", description: "Dizajniranje doteranih i intuitivnih sučelja." },
@@ -179,11 +179,11 @@ const translations: Record<Language, Translations> = {
     testimonials: {
       title: "Što Kažu Naši Klijenti",
       items: [
-        { company: "TechCorp", role: "CEO", content: "Izvanredna suradnja! DAE Techvision je transformisao naš digitalni prisustvo." },
+        { company: "TechCorp", role: "CEO", content: "Izvanredna saradnja! DAE Techvision je transformisao naše digitalno prisustvo." },
         { company: "DigitalFlow", role: "Product Manager", content: "Profesionalan pristup, kvalitetan kod i fantastična komunikacija." },
         { company: "InnovateLab", role: "CTO", content: "Najbolji tim s kojim sam radio. Brzi i efikasni." },
-        { company: "Restoran Central", role: "Vlasnik", content: "Digitalni menu sistem sa QR kodovima je revolucionisao naš posao. Gosti su oduševljeni!" },
-        { company: "StartUp Hub", role: "Founder", content: "Od ideje do MVP-a za samo 3 mjeseca. Neverovatna brzina i kvaliteta." },
+        { company: "Restoran Central", role: "Vlasnik", content: "Digitalni meni sistem sa QR kodovima je revolucionisao naš posao. Gosti su oduševljeni!" },
+        { company: "StartUp Hub", role: "Founder", content: "Od ideje do MVP-a za samo 3 meseca. Neverovatna brzina i kvaliteta." },
         { company: "E-commerce Plus", role: "Operations Manager", content: "Nova online prodavnica je povećala naše prihode za 150%. Zahvaljujemo DAEK timu!" },
       ],
     },
@@ -192,7 +192,7 @@ const translations: Record<Language, Translations> = {
       title: "Strukturirani pristup",
       description: "koji garantuje izvanredne rezultate svaki put.",
       items: [
-        { title: "Otkrivanje", description: "Razumijevanje vaših ciljeva i potreba.", icon: "🎯" },
+        { title: "Otkrivanje", description: "Razumevanje vaših ciljeva i potreba.", icon: "🎯" },
         { title: "Dizajn", description: "Kreiranje wireframeova i vizuelnog identiteta.", icon: "🎨" },
         { title: "Razvoj", description: "Implementacija koda sa fokusom na performanse.", icon: "⚡" },
         { title: "Lansiranje", description: "Deployment i monitoring nakon lansiranja.", icon: "🚀" },
@@ -214,14 +214,14 @@ const translations: Record<Language, Translations> = {
       description: "Moderni set alata fokusiran na brzinu i skalabilnost.",
     },
     faq: {
-      badge: "Često Postavljena Pitanja",
+      badge: "Često Postavljana Pitanja",
       title: "Odgovori na najčešća pitanja",
       description: "o našim uslugama i procesu rada.",
       footer: "Niste našli odgovor na svoje pitanje?",
       footerButton: "Kontaktirajte nas",
       items: [
         { question: "Da li možete raditi sa postojećim projektima?", answer: "Da, imamo iskustva sa integracijom u postojeće timove." },
-        { question: "Koliko dugo traje razvoj projekta?", answer: "Vrijeme zavisi od složenosti projekta." },
+        { question: "Koliko dugo traje razvoj projekta?", answer: "Vreme zavisi od složenosti projekta." },
         { question: "Koje tehnologije koristite?", answer: "Specijalizirani smo za React, Next.js, TypeScript." },
         { question: "Da li nudite podršku nakon lansiranja?", answer: "Da, nudimo kontinuiranu podršku i održavanje." },
       ],
@@ -229,21 +229,21 @@ const translations: Record<Language, Translations> = {
     cta: {
       title: "Spremni za Digitalnu Transformaciju?",
       description: "Hajde da zajedno stvorimo nešto izvanredno. Vaš sledeći veliki projekat čeka na vas.",
-      primaryButton: "Započnite Projekt",
+      primaryButton: "Započnite Projekat",
       secondaryButton: "Pogledajte Radove",
       footnote: "Bez obaveze. Samo razgovor o vašim idejama.",
     },
     contact: {
       badge: "Hajde da izgradimo nešto veliko zajedno",
-      title: "Podijeli svoju ideju ili projekt",
-      description: "i javit ću ti se unutar 1-2 radna dana.",
+      title: "Podeli svoju ideju ili projekat",
+      description: "i javiću ti se unutar 1-2 radna dana.",
       form: {
         name: "Ime",
         email: "Email",
         message: "Poruka",
         button: "Pošalji poruku",
         loading: "Slanje...",
-        success: "Hvala što ste se javili! Javiću vam se što je prije moguće.",
+        success: "Hvala što ste se javili! Javiću vam se što je pre moguće.",
       },
     },
   },
@@ -408,7 +408,7 @@ export function LanguageSwitcher({ currentLang, onLanguageChange }: {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20"
       >
-        <span className="text-lg">{currentLang === 'bs' ? <img src="/bh-flag.jpg" alt="Bosnia" className="w-5 h-3.5 rounded" /> : <img src="/UK-flag.jpg" alt="UK" className="w-5 h-3.5 rounded" />}</span>
+        <span className="text-lg">{currentLang === 'sr' ? <img src="/bh-flag.jpg" alt="Serbia" className="w-5 h-3.5 rounded" /> : <img src="/UK-flag.jpg" alt="UK" className="w-5 h-3.5 rounded" />}</span>
         <span>{currentLang.toUpperCase()}</span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
@@ -430,13 +430,13 @@ export function LanguageSwitcher({ currentLang, onLanguageChange }: {
           >
             <div className="rounded-xl border border-white/20 bg-black/90 backdrop-blur-md p-2 shadow-xl">
               <button
-                onClick={() => { onLanguageChange('bs'); setIsOpen(false); }}
+                onClick={() => { onLanguageChange('sr'); setIsOpen(false); }}
                 className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition hover:bg-white/10 w-full text-left ${
-                  currentLang === 'bs' ? 'bg-white/20 text-white' : 'text-white/80'
+                  currentLang === 'sr' ? 'bg-white/20 text-white' : 'text-white/80'
                 }`}
               >
-                <img src="/bh-flag.jpg" alt="Bosnia" className="w-5 h-3.5 rounded" />
-                <span>Bosanski</span>
+                <img src="/bh-flag.jpg" alt="Serbia" className="w-5 h-3.5 rounded" />
+                <span>Srpski</span>
               </button>
               <button
                 onClick={() => { onLanguageChange('en'); setIsOpen(false); }}

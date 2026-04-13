@@ -3,32 +3,32 @@
 import { motion } from "framer-motion";
 import { CodeIcon, DesignIcon, RocketIcon, SpeedIcon } from "./icons";
 
-const services = [
-  {
-    title: "Fullstack Web Development",
-    description: "Izgradnja robusnih, skalabilnih aplikacija s Next.js, TypeScript i modernim backendima.",
-    icon: CodeIcon,
-  },
-  {
-    title: "UI/UX Dizajn",
-    description: "Dizajniranje doteranih sučelja s fokusom na pristupačnost i intuitivne interakcije.",
-    icon: DesignIcon,
-  },
-  {
-    title: "Razvoj Landing Stranica",
-    description: "Landing stranice fokusirane na konverziju s pixel-perfect layoutima i brzim vremenom učitavanja.",
-    icon: RocketIcon,
-  },
-  {
-    title: "Optimizacija Web Stranica",
-    description: "Podešavanje performansi, SEO poboljšanja i responzivna iskustva za svaki uređaj.",
-    icon: SpeedIcon,
-  },
-];
-
 import { type Translations } from "./LanguageSwitcher";
 
 export function Services({ translations }: { translations: Translations }) {
+  const services = [
+    {
+      title: translations.services.items[0].title,
+      description: translations.services.items[0].description,
+      icon: CodeIcon,
+    },
+    {
+      title: translations.services.items[1].title,
+      description: translations.services.items[1].description,
+      icon: DesignIcon,
+    },
+    {
+      title: translations.services.items[2].title,
+      description: translations.services.items[2].description,
+      icon: RocketIcon,
+    },
+    {
+      title: translations.services.items[3].title,
+      description: translations.services.items[3].description,
+      icon: SpeedIcon,
+    },
+  ];
+
   return (
     <section id="services" className="relative overflow-hidden py-20">
       <div className="absolute inset-0 opacity-40">
@@ -38,10 +38,10 @@ export function Services({ translations }: { translations: Translations }) {
 
       <div className="relative mx-auto max-w-6xl px-4 text-white md:px-8">
         <div className="mb-12 max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">Što radimo</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Usluge koje nudimo</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">{translations.services.badge}</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{translations.services.title}</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
-            Od brzog prototipiranja do produkcijskih aplikacija, isporučujemo rješenja punog ciklusa s dotjeranošću koju očekujete.
+            {translations.services.description}
           </p>
         </div>
 

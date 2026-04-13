@@ -4,8 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import Magnetic from "./Magnetic";
+import { type Translations } from "./LanguageSwitcher";
 
-export function Hero() {
+export function Hero({ translations }: { translations: Translations }) {
   return (
     <section id="home" className="relative overflow-hidden pt-24 pb-20 min-h-screen flex items-center">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-gray-950 to-slate-950" />
@@ -77,7 +78,7 @@ export function Hero() {
               transition={{ duration: 2, repeat: Infinity }}
               className="w-2 h-2 bg-indigo-400 rounded-full"
             />
-            UI/UX & FULL-STACK AGENCY
+            {translations.hero.badge}
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
@@ -95,13 +96,13 @@ export function Hero() {
               Techvision
             </motion.span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-6 text-xl leading-relaxed text-white/70 max-w-3xl mx-auto"
           >
-            Building modern, high-performance websites and web applications that drive conversions and business growth.
+            {translations.hero.subtitle}
           </motion.p>
 
           <motion.div 
@@ -133,7 +134,7 @@ export function Hero() {
                   href="#contact"
                   className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-indigo-500/50 transition hover:brightness-110"
                 >
-                  Start a Project
+                  {translations.hero.contactUs}
                 </Link>
               </motion.div>
             </Magnetic>
@@ -152,7 +153,7 @@ export function Hero() {
                   href="#services"
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10 hover:border-white/40"
                 >
-                  View Portfolio
+                  {translations.hero.viewProjects}
                 </Link>
               </motion.div>
             </Magnetic>
@@ -168,10 +169,10 @@ export function Hero() {
           className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
         >
           {[
-            { icon: "🚀", title: "Fast Performance", desc: "Lightning-fast websites optimized for speed" },
-            { icon: "🎨", title: "Modern Design", desc: "Clean, conversion-focused UI/UX" },
-            { icon: "📱", title: "Mobile-First", desc: "Responsive design for all devices" },
-            { icon: "🔧", title: "Scalable Code", desc: "Clean, maintainable architecture" }
+            { icon: "🚀", title: translations.hero.fastEfficient, desc: translations.hero.fastEfficientDesc },
+            { icon: "🎨", title: translations.hero.modernInterfaces, desc: translations.hero.modernInterfacesDesc },
+            { icon: "📱", title: translations.hero.modernInterfaces, desc: translations.hero.modernInterfacesDesc },
+            { icon: "🔧", title: translations.hero.scalableCode, desc: translations.hero.scalableCodeDesc }
           ].map((feature, index) => (
             <motion.div
               key={index}

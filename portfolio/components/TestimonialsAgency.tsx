@@ -2,52 +2,16 @@
 
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
+import { type Translations } from "./LanguageSwitcher";
 
-export function TestimonialsAgency() {
-  const testimonials = [
-    {
-      name: "Marko Petrović",
-      role: "CEO, TechStart Solutions",
-      content: "DAEK Techvision transformed our online presence completely. The new website increased our conversion rate by 40% within the first month. Professional, efficient, and results-driven.",
-      rating: 5,
-      avatar: "MP"
-    },
-    {
-      name: "Jelena Milovanović",
-      role: "Marketing Director, Innovate Labs",
-      content: "Working with DAEK Techvision was exceptional. They understood our vision immediately and delivered a stunning SaaS dashboard that our users love. Highly recommended!",
-      rating: 5,
-      avatar: "JM"
-    },
-    {
-      name: "Aleksandar Jovanović",
-      role: "Founder, E-Commerce Plus",
-      content: "The e-commerce platform they built for us is lightning-fast and beautifully designed. Our sales have doubled since launch. True professionals who deliver on their promises.",
-      rating: 5,
-      avatar: "AJ"
-    },
-    {
-      name: "Marija Stojanović",
-      role: "Product Manager, Digital Agency",
-      content: "DAEK Techvision's attention to detail and technical expertise is unmatched. They delivered our complex booking system on time and exceeded all our expectations.",
-      rating: 5,
-      avatar: "MS"
-    },
-    {
-      name: "Nikola Radić",
-      role: "CTO, Startup Hub",
-      content: "Outstanding development work! They built our MVP in record time with clean, scalable code. The team is responsive, skilled, and truly cares about the project success.",
-      rating: 5,
-      avatar: "NR"
-    },
-    {
-      name: "Ana Đorđević",
-      role: "Brand Manager, Creative Studio",
-      content: "The landing page DAEK Techvision created for our campaign conversion-focused and visually stunning. Our lead generation increased by 60% immediately.",
-      rating: 5,
-      avatar: "AĐ"
-    }
-  ];
+export function TestimonialsAgency({ translations }: { translations: Translations }) {
+  const testimonials = translations.testimonials.items.map((item, index) => ({
+    name: item.company,
+    role: item.role,
+    content: item.content,
+    rating: 5,
+    avatar: item.company.substring(0, 2).toUpperCase()
+  }));
 
   return (
     <section id="testimonials" className="relative py-20 overflow-hidden">
@@ -77,27 +41,24 @@ export function TestimonialsAgency() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Što Kažu{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              Naši Klijenti
-            </span>
+            {translations.testimonials.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-white/70 max-w-2xl mx-auto"
           >
-            Real results from real clients who trust us with their digital success
+            {translations.partners.description}
           </motion.p>
         </motion.div>
 
@@ -167,12 +128,7 @@ export function TestimonialsAgency() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {[
-            { number: "50+", label: "Happy Clients" },
-            { number: "100+", label: "Projects Completed" },
-            { number: "5+", label: "Years Experience" },
-            { number: "98%", label: "Client Satisfaction" }
-          ].map((stat, index) => (
+          {translations.results.items.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

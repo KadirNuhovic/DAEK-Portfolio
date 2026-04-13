@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Magnetic from "./Magnetic";
+import { type Translations } from "./LanguageSwitcher";
 
-export function ClosingCTA() {
+export function ClosingCTA({ translations }: { translations: Translations }) {
   return (
     <section id="closing-cta" className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-gray-950 to-slate-950" />
@@ -55,27 +56,24 @@ export function ClosingCTA() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight"
           >
-            We don't just build websites —{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-              we build digital products that grow your business.
-            </span>
+            {translations.cta.title}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed"
           >
-            Ready to transform your digital presence? Let's create something amazing together that drives real results for your business.
+            {translations.cta.description}
           </motion.p>
 
           <motion.div 
@@ -95,7 +93,7 @@ export function ClosingCTA() {
                   href="#contact"
                   className="group inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 px-12 py-5 text-lg font-semibold text-white shadow-lg shadow-indigo-500/50 transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:shadow-indigo-500/70"
                 >
-                  <span className="mr-2">Let's Work Together</span>
+                  <span className="mr-2">{translations.cta.primaryButton}</span>
                   <motion.svg
                     className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                     fill="none"

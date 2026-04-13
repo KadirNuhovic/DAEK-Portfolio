@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { GithubIcon, LinkedInIcon, MailIcon } from "./icons";
+import { type Translations } from "./LanguageSwitcher";
 
-export function Contact() {
+export function Contact({ translations }: { translations: Translations }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -18,57 +18,39 @@ export function Contact() {
     event.preventDefault();
     setLoading(true);
 
-    // Using actual EmailJS credentials from user's .env.local
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_2x4h6g7";
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_2x4h6g7";
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "2x4h6g7-8j9k0l1-m2n3o4p5-q6r7s8t9u0v1";
-
-    console.log("Using EmailJS configuration:");
-    console.log("Service ID:", serviceId);
-    console.log("Template ID:", templateId);
-    console.log("Public Key:", publicKey ? "Set" : "Not set");
-    console.log("Environment vars available:", !!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
-
     try {
-      // Initialize EmailJS with public key first
-      emailjs.init(publicKey);
-      
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: form.name,
-          from_email: form.email,
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
           message: form.message,
-          to_email: "deak@deaktechvision.com",
-          reply_to: form.email,
-        }
-      );
+        }),
+      });
 
-      console.log("Email sent successfully:", result);
-      setSubmitted(true);
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setSubmitted(false), 4500);
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Email sent successfully:", data);
+        setSubmitted(true);
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 4500);
+      } else {
+        throw new Error(data.error || 'Greška pri slanju mejla');
+      }
     } catch (error) {
       console.error("Email send failed:", error);
-      console.error("Error details:", JSON.stringify(error, null, 2));
       
       let errorMessage = "Došlo je do greške pri slanju mejla. Pokušajte ponovo.";
       
-      // Try to extract more specific error information
-      if (error && typeof error === 'object') {
-        if ('status' in error) {
-          errorMessage = `EmailJS greška (status: ${error.status}). Proverite kredencijale.`;
-        } else if ('text' in error) {
-          errorMessage = `EmailJS greška: ${error.text}`;
-        }
-      } else if (error instanceof Error) {
-        if (error.message.includes("401")) {
-          errorMessage = "EmailJS Public Key nije ispravan. Proverite konfiguraciju.";
-        } else if (error.message.includes("403")) {
-          errorMessage = "EmailJS pristup odbijen. Proverite Service ID i Template ID.";
-        } else if (error.message.includes("network") || error.message.includes("fetch")) {
+      if (error instanceof Error) {
+        if (error.message.includes("network") || error.message.includes("fetch")) {
           errorMessage = "Greška u mreži. Proverite internet vezu.";
+        } else if (error.message.includes("500")) {
+          errorMessage = "Serverska greška. Pokušajte ponovo kasnije.";
         } else {
           errorMessage = `Greška: ${error.message}`;
         }
@@ -89,10 +71,10 @@ export function Contact() {
 
       <div className="relative mx-auto max-w-6xl px-4 text-white md:px-8">
         <div className="mb-10 max-w-xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">GET IN TOUCH</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Let's Work Together</h2>
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/60">{translations.contact.badge}</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{translations.contact.title}</h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
-            Ready to start your next project? We'd love to hear from you and discuss how we can help bring your vision to life.
+            {translations.contact.description}
           </p>
         </div>
 
@@ -108,7 +90,7 @@ export function Contact() {
             <div className="grid gap-6">
               <div>
                 <label className="text-sm font-semibold text-white/80" htmlFor="name">
-                  Name
+                  {translations.contact.form.name}
                 </label>
                 <input
                   id="name"
@@ -117,12 +99,12 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   className="mt-2 w-full rounded-2xl border border-white/15 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/30"
-                  placeholder="Your name"
+                  placeholder={translations.contact.form.name}
                 />
               </div>
               <div>
                 <label className="text-sm font-semibold text-white/80" htmlFor="email">
-                  Email
+                  {translations.contact.form.email}
                 </label>
                 <input
                   id="email"
@@ -132,12 +114,12 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   className="mt-2 w-full rounded-2xl border border-white/15 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/30"
-                  placeholder="you@example.com"
+                  placeholder={translations.contact.form.email}
                 />
               </div>
               <div>
                 <label className="text-sm font-semibold text-white/80" htmlFor="message">
-                  Message
+                  {translations.contact.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -147,7 +129,7 @@ export function Contact() {
                   required
                   rows={5}
                   className="mt-2 w-full resize-none rounded-2xl border border-white/15 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/30"
-                  placeholder="Tell me about your project..."
+                  placeholder={translations.contact.form.message}
                 />
               </div>
 
@@ -156,12 +138,12 @@ export function Contact() {
                 disabled={loading}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-purple-500/30 transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Sending..." : "Send Message"}
+                {loading ? translations.contact.form.loading : translations.contact.form.button}
               </button>
 
               {submitted ? (
                 <div className="rounded-2xl border border-white/10 bg-white/10 p-4 text-sm text-white/80">
-                  Message sent successfully! We'll get back to you soon.
+                  {translations.contact.form.success}
                 </div>
               ) : null}
             </div>
@@ -177,7 +159,7 @@ export function Contact() {
             <div className="flex flex-col gap-6">
               <div>
                 <h3 className="text-xl font-semibold text-white">Contact Information</h3>
-                <p className="mt-3 text-white/70">Reach out to us via email or connect on social media for the latest updates and project discussions.</p>
+                <p className="mt-3 text-white/70">Reach out via email or connect on social media for the latest updates and project discussions.</p>
               </div>
 
               <div className="space-y-4">
@@ -188,7 +170,7 @@ export function Contact() {
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-500 text-black">
                     <MailIcon className="h-5 w-5" />
                   </span>
-                  deak@deaktechvision.com
+                  deak@deaktechvison.com
                 </a>
 
                 <a
