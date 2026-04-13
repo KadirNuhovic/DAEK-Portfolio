@@ -3,9 +3,11 @@ services:
     name: daek-portfolio
     env: node
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: next start -p $PORT
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10000
       - key: RESEND_API_KEY
         sync: false
